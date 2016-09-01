@@ -22,7 +22,6 @@ install:
     - COMPOSER_ROOT_VERSION=dev-master composer update --prefer-source $COMPOSER_FLAGS
 
 script:
-    - php php-cs-fixer.phar fix --dry-run -v
     - bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
