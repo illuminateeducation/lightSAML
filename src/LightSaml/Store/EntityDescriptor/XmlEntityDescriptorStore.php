@@ -15,9 +15,12 @@ use LightSaml\Error\LightSamlXmlException;
 use LightSaml\Model\Metadata\EntitiesDescriptor;
 use LightSaml\Model\Metadata\EntityDescriptor;
 
-class FileEntityDescriptorStore implements EntityDescriptorStoreInterface
+class XmlEntityDescriptorStore implements EntityDescriptorStoreInterface
 {
-    private $filename;
+    /**
+     * @var string
+     */
+    private $xmlcontent;
 
     /** @var EntityDescriptor|EntitiesDescriptor */
     private $object;
@@ -25,9 +28,9 @@ class FileEntityDescriptorStore implements EntityDescriptorStoreInterface
     /**
      * @param string $filename
      */
-    public function __construct($filename)
+    public function __construct($content)
     {
-        $this->filename = $filename;
+        $this->xmlcontent = $content;
     }
 
     /**
@@ -80,10 +83,11 @@ class FileEntityDescriptorStore implements EntityDescriptorStoreInterface
 
     private function load()
     {
-        try {
-            $this->object = EntityDescriptor::load($this->filename);
-        } catch (LightSamlXmlException $ex) {
-            $this->object = EntitiesDescriptor::load($this->filename);
-        }
+		try {
+			$this->object = EntitiesDescriptor::loadXml($this->xmlcontent);
+		} catch (LightSamlXmlException $ex) {
+			$this->object = EntityDescriptor::loadXml($this->xmlcontent);
+		}
     }
 }
+
