@@ -26,7 +26,7 @@ class XmlEntityDescriptorStore implements EntityDescriptorStoreInterface
     private $object;
 
     /**
-     * @param string $filename
+     * @param $content
      */
     public function __construct($content)
     {

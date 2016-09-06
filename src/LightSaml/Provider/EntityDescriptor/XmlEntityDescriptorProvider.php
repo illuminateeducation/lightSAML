@@ -23,7 +23,7 @@ class XmlEntityDescriptorProvider implements EntityDescriptorProviderInterface
     private $entityDescriptor;
 
     /**
-     * @param string $filename
+     * @param $filecontent
      */
     public function __construct($filecontent)
     {
